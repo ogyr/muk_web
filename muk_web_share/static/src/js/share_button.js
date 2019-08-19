@@ -42,11 +42,13 @@ FormRenderer.include({
 	},
 	_renderView: function() {
 		var self = this;
-		var _super = this._super.apply(this, arguments);
-		_super.then(function() {
-			self._renderShareButton();
+		var res = this._super.apply(this, arguments);
+		res.then(function() {
+			if(self.mode === 'readonly') {
+				self._renderShareButton();
+			}
 		});
-		return _super;
+		return res;
 	},
 });
 
